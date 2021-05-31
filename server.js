@@ -2,6 +2,7 @@ const express = require("express");
 const dotenv = require("dotenv");
 const cors = require("cors");
 const app = express();
+const morgan = require("morgan");
 
 // load env vars
 dotenv.config({ path: "./config/config.env" });
@@ -11,6 +12,11 @@ app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 // To parse the incoming requests with JSON payloads
 app.use(express.json());
+
+// dev logging middleware
+if (process.env.NODE_ENV === "development") {
+  app.use(morgan("dev"));
+}
 
 app.get("/", (req, res) => {
   res.send({ message: "this is homepage" });
