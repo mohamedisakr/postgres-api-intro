@@ -16,7 +16,9 @@ app.get("/", (req, res) => {
   res.send({ message: "this is homepage" });
 });
 
-app.use("/departments", require("./routes/departments"));
+// Routes files
+const departmentsRouter = require("./routes/departments");
+app.use(process.env.DEPARTMENT_ROUTE, departmentsRouter);
 
 const PORT = process.env.PORT; //5000;
 app.listen(PORT, () => console.log(`Server is up and running on port ${PORT}`));

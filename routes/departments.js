@@ -1,25 +1,15 @@
 const express = require("express");
 const router = express();
-const department = require("../controllers/department");
+const {
+  create,
+  findAll,
+  findById,
+  updateOne,
+  deleteOne,
+  deleteAll,
+} = require("../controllers/departments");
 
-module.exports = () => {
-  router.get("/", department.findAll);
-  //   router.get("/", (req, res) => {
-  //     res.send({ message: "welcome to departments page" });
-  //   });
+router.route("/").get(findAll).post(create).delete(deleteAll);
+router.route("/:id").get(findById).put(updateOne).delete(deleteOne);
 
-  // Retrieve a single department with id
-  router.get("/:id", department.findById);
-
-  // Create a new department
-  router.post("/", department.create);
-
-  // Update a department with id
-  router.put("/:id", department.updateOne);
-
-  // Delete a departments with id
-  router.delete("/:id", department.deleteOne);
-
-  // Delete all departments
-  router.delete("/", department.deleteAll);
-};
+module.exports = router;
