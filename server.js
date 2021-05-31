@@ -1,6 +1,10 @@
 const express = require("express");
+const dotenv = require("dotenv");
 const cors = require("cors");
 const app = express();
+
+// load env vars
+dotenv.config({ path: "./config/config.env" });
 
 app.use(cors());
 // use requests parser of type content-type 'application/json'
@@ -14,5 +18,5 @@ app.get("/", (req, res) => {
 
 app.use("/departments", require("./routes/departments"));
 
-const PORT = 5000;
+const PORT = process.env.PORT; //5000;
 app.listen(PORT, () => console.log(`Server is up and running on port ${PORT}`));
