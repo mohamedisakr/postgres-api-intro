@@ -1,6 +1,6 @@
 exports.create = (req, res) => {
   const { department_id, department_title } = req.body;
-  const newDepartment = Object.assign({ department_id, department_title });
+  const newDepartment = { department_id, department_title }; //Object.assign({ department_id, department_title });
   res.send({
     message: `create new department ${newDepartment}`,
   });

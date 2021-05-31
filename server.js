@@ -14,5 +14,5 @@ app.get("/", (req, res) => {
 
 app.use("/departments", require("./routes/departments"));
 
-const PORT = 5000; //process.env.PORT || 8080;
+const PORT = 5000;
 app.listen(PORT, () => console.log(`Server is up and running on port ${PORT}`));
