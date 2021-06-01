@@ -64,9 +64,9 @@ exports.deleteOne = async (req, res, next) => {
   const department_id = req.params.id;
 
   try {
-    const num = await Department.destroy({ where: { id: department_id } });
+    const num = await Department.destroy({ where: { department_id } });
 
-    if (num == 1) {
+    if (num > 0) {
       res.send({
         message: "department was deleted successfully!",
       });
@@ -76,10 +76,10 @@ exports.deleteOne = async (req, res, next) => {
       });
     }
   } catch (err) {
-    // res.status(500).send({
-    res.send({
+    res.status(500).send({
       message: `Could not delete department with id = ${department_id}: ${err.message}`, //  err.message, //
     });
+    console.log(err.message);
   }
 };
 
