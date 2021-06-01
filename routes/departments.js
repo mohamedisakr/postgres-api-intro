@@ -9,7 +9,7 @@ const {
   deleteAll,
 } = require("../controllers/departments");
 
-router.route("/").get(findAll).post(create).delete(deleteAll);
+router.route("/").get(findAll).post(create); //.delete(deleteAll);
 router.route("/:id").get(findById).put(updateOne).delete(deleteOne);
 
 module.exports = router;

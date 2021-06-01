@@ -1,11 +1,12 @@
 const express = require("express");
-const dotenv = require("dotenv");
+require("dotenv").config();
 const cors = require("cors");
 const app = express();
 const morgan = require("morgan");
+const database = require("./config/database");
 
 // load env vars
-dotenv.config({ path: "./config/config.env" });
+// dotenv.config({ path: "./config/config.env" });
 
 app.use(cors());
 // use requests parser of type content-type 'application/json'
@@ -28,3 +29,9 @@ app.use(process.env.DEPARTMENT_ROUTE, departmentsRouter);
 
 const PORT = process.env.PORT; //5000;
 app.listen(PORT, () => console.log(`Server is up and running on port ${PORT}`));
+
+// test postgres connection
+// database
+//   .authenticate()
+//   .then(() => console.log("Postgres database connected"))
+//   .catch((err) => console.log(`Can not connect to postgres database : ${err}`));

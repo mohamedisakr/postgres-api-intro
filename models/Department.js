@@ -1,7 +1,7 @@
 const Sequelize = require("sequelize");
-const db = require("../config/db");
+const database = require("../config/database");
 
-const Department = db.define(
+const Department = database.define(
   "department",
   {
     department_id: {
@@ -25,16 +25,19 @@ const Department = db.define(
     },
   },
   {
-    tableName: "departments",
-    comment: "",
-    indexes: [
-      {
-        name: "departments_index01",
-        unique: false,
-        fields: ["department_title"],
-      },
-    ],
+    timestamps: false,
   }
 );
 
 module.exports = Department;
+// {
+//   tableName: "departments",
+//   comment: "",
+//   indexes: [
+//     {
+//       name: "departments_index01",
+//       unique: false,
+//       fields: ["department_title"],
+//     },
+//   ],
+// }
